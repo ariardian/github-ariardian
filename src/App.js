@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import { Container, Row, Col, Navbar, FormControl, InputGroup, Button } from "react-bootstrap";
+import FormSearch from "./component/FormSearch";
 
 function App() {
+  const [searchParam, setSearchParam] = useState("");
+
+  const onChageSearchParam = (e) => {
+    const value = e.target.value;
+    setSearchParam(value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar expand="lg" variant="dark" bg="dark">
+        <Container>
+          <Navbar.Brand href="#">Github API Test FronEnd</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <Container>
+        <Row>
+          <Col md={12}>
+            <FormSearch param={searchParam} onChangeParam={onChageSearchParam} />
+          </Col>
+          <Col md={12}>Content</Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
